@@ -10,3 +10,8 @@
 ## About Laravel
 - https://github.com/alnutile/codenames
 - https://alfrednutile.info/posts/ci_cd_part_one/
+- https://laravel-news.com/laravel-github-actions
+- https://laravel.demiart.ru/continuous-integration-github-actions/
+
+### GIT_HUB Deploying
+- https://www.twilio.com/blog/build-test-deploy-laravel-application-github-actions

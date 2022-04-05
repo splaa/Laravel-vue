@@ -69,11 +69,11 @@ jobs:
         run: |
           ./vendor/bin/phpstan analyse
       # Again another lint before we do the js build
-#      - name: PHP Code Style (phpcs)
-#        uses: chindit/actions-phpcs@master
-#        with:
-#          cli: "--standard=PSR12"
-#          dir: app/
+      #      - name: PHP Code Style (phpcs)
+      #        uses: chindit/actions-phpcs@master
+      #        with:
+      #          cli: "--standard=PSR12"
+      #          dir: app/
 
       # The tests take care of the migrations we just want the .env file in place
       - name: Migrations
@@ -86,3 +86,38 @@ jobs:
 
       - name: Do we pass the coverage amount
         run: vendor/bin/coverage-check clover.xml 30
+
+    #https://driesvints.medium.com/building-and-deploying-laravel-with-github-actions-8111e8a6646e
+    #      - name: Deploy
+    #        if: github.ref == 'refs/heads/master'
+    #        run: curl ${{ secrets.ENVOYER_HOOK }}?sha=${{ github.sha }}
+
+      deploy:
+
+        runs-on: ubuntu-latest
+
+        steps:
+
+          - name: Checkout
+
+            uses: actions/checkout@v2
+
+          - name: Deployment
+
+            uses: appleboy/ssh-action@main
+
+            with:
+
+              host: ${{ secrets.SSH_HOST }}
+
+              key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+              username: ${{ secrets.SSH_USERNAME }}
+
+              script: |
+
+                cd /var/www/splx-test.ml
+
+                git checkout -f
+
+                git pull
