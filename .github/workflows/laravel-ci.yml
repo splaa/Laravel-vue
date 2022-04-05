@@ -101,4 +101,4 @@ jobs:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
 
       - name: Do we pass the coverage amount
-        run: vendor/bin/coverage-check clover.xml 60
+        run: vendor/bin/coverage-check clover.xml 30
