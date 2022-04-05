@@ -67,10 +67,6 @@ jobs:
         run: mkdir storage/framework/testing
       - name: Create views folder
         run: mkdir storage/framework/views
-      - name: Permition
-        run: chgrp -R www-data storage
-      - name: Owner
-        run: chown -R www-data ../storage
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
       - name: Prepare the application
