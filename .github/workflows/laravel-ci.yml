@@ -52,29 +52,29 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Create storage folder
-          run: mkdir storage
+        run: mkdir storage
       - name: Create framework folders
-          run: mkdir storage/framework
+        run: mkdir storage/framework
       - name: Create cache folder
         run: mkdir -p storage/framework/cache
       - name: Create logs folder
-          run: mkdir storage/logs
+        run: mkdir storage/logs
       - name: Create cache/data folder
-          run: mkdir storage/framework/cache/data
+        run: mkdir storage/framework/cache/data
       - name: Create sessions folder
-          run: mkdir mkdir storage/framework/sessions
+        run: mkdir mkdir storage/framework/sessions
       - name: Create testing folder
-          run: mkdir storage/framework/testing
+        run: mkdir storage/framework/testing
       - name: Create views folder
-          run: mkdir storage/framework/views
+        run: mkdir storage/framework/views
       - name: Permition
-          run: chgrp -R www-data storage
+        run: chgrp -R www-data storage
       - name: Owner
-          run: chown -R www-data ../storage
+        run: chown -R www-data ../storage
       - name: Install Composer dependencies
-          run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
       - name: Prepare the application
-          run: |
+        run: |
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
       - name: Clear Config
