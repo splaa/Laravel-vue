@@ -92,32 +92,32 @@ jobs:
     #        if: github.ref == 'refs/heads/master'
     #        run: curl ${{ secrets.ENVOYER_HOOK }}?sha=${{ github.sha }}
 
-      deploy:
+  deploy:
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
+    steps:
 
-          - name: Checkout
+      - name: Checkout
 
-            uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
-          - name: Deployment
+      - name: Deployment
 
-            uses: appleboy/ssh-action@main
+        uses: appleboy/ssh-action@main
 
-            with:
+        with:
 
-              host: ${{ secrets.SSH_HOST }}
+          host: ${{ secrets.SSH_HOST }}
 
-              key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-              username: ${{ secrets.SSH_USERNAME }}
+          username: ${{ secrets.SSH_USERNAME }}
 
-              script: |
+          script: |
 
-                cd /var/www/splx-test.ml
+            cd /var/www/splx-test.ml
 
-                git checkout -f
+            git checkout -f
 
-                git pull
+            git pull
